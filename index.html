@@ -27,10 +27,27 @@
             <div class="heart"></div>
         </div>
     </div>
+    <audio id="click-sound" src="click-sound.mp3"></audio>
     <script>
         const envelope = document.querySelector('.envelope-wrapper');
-        envelope.addEventListener('click', () => {
+        const heart = document.querySelector('.heart');
+        const clickSound = document.getElementById('click-sound');
+    
+        // Function to toggle the 'flap' class
+        function toggleFlap() {
             envelope.classList.toggle('flap');
+        }
+    
+        // Add event listener to the envelope to toggle the flap
+        envelope.addEventListener('click', toggleFlap);
+    
+        // Add event listener to the heart
+        heart.addEventListener('click', (event) => {
+            clickSound.play();
+            // Stop the event from bubbling up to the envelope
+            event.stopPropagation();
+            // Toggle the flap class to open the envelope
+            toggleFlap();
         });
     </script>
 </body>
